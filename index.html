@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Link - Agendamento Online</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-image: url('https://weleyt13.github.io/pwrose.pires/noisy-gradients.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo a {
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00b4d8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .auth-buttons {
+            display: flex;
+        }
+
+        .auth-buttons button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .auth-buttons .login {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+        }
+
+        .auth-buttons .login:hover {
+            background: linear-gradient(to right, #5b0ea3, #1e63d9);
+        }
+
+        .auth-buttons .signup {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: #fff;
+        }
+
+        .auth-buttons .signup:hover {
+            background: linear-gradient(to right, #e6687e, #e6729f);
+        }
+
+        .hero {
+            position: relative;
+            background-image: url('https://weleyt13.github.io/pwrose.pires/lera-kogan-hBjll5c6-9o-unsplash%201.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;a
+            overflow: hidden;
+        }
+
+        .hero-content {
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-family: 'Georgia', serif;
+            position: absolute;
+            top: 7%;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hero-content button:hover {
+            background-color: #ff1493;
+        }
+
+        .info-bar {
+            position: relative;
+            width: 41%; /* Ajuste proporcional da primeira barra */
+            height: 300px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 10px auto;
+        }
+
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 1s ease-in-out;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+        }
+
+        .indicators span {
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .indicators .active {
+            background-color: #ff4081;
+        }
+
+        .info-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .info-overlay h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .info-overlay p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .info-overlay button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .info-overlay button:hover {
+            background-color: #ff1493;
+        }
+
+        .product-bar {
+            width: 40%; /* Ajuste proporcional da segunda barra */
+            height: 30%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content { 
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* ajusta o tamanho do login */
+            max-width: 500px; /* ajusta o tamanho do login */
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .formulario-contato input,
+        .formulario-contato textarea,
+        .formulario-login input,
+        .formulario-cadastro input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .formulario-contato button,
+        .formulario-login button,
+        .formulario-cadastro button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .formulario-contato button:hover,
+        .formulario-login button:hover,
+        .formulario-cadastro button:hover {
+            background-color: #ff1493;
+        }
+
+        .header-title {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">Beauty <span>Link</span></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="login">Login</button>
+                <button class="signup">Cadastro</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo ao Beauty Link</h1>
+    <div class="info-bar">
+        <div class="slides">
+            <div class="slide"><img src="https://static.wixstatic.com/media/41d000_9d0c9989e0019030a1f87f1fef20dbfc.jpg/v1/fill/w_1143,h_714,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/41d000_9d0c9989e0019030a1f87f1fef20dbfc.jpg" alt="Slide 1"></div>
+            <div class="slide"><img src="https://static.wixstatic.com/media/9c608a_f7f89260104a4c60bc3f0102dff6abe7.jpg/v1/fill/w_930,h_391,al_c,q_85,enc_auto/9c608a_f7f89260104a4c60bc3f0102dff6abe7.jpg" alt="Slide 2"></div>
+            <div class="slide"><img src="https://static.wixstatic.com/media/9c608a_9c51c19c1d514c499674324ef25c482a.jpg/v1/fill/w_1266,h_616,al_c,q_85,enc_auto/9c608a_9c51c19c1d514c499674324ef25c482a.jpg" alt="Slide 3"></div>
+        </div>
+        <div class="indicators">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="info-overlay">
+            <h2>Conecte-se com Sua Estética</h2>
+            <p>Agende seu atendimento com nossos especialistas e descubra o melhor para você.
+
+</p>
+            <button>Agende agora</button>
+        </div>
+    </div>
+    <div class="product-bar">
+        <div class="product-item">
+            <img src="https://via.placeholder.com/300x200" alt="Produto 1">
+            <p>Produto 1</p>
+        </div>
+        <div class="product-item">
+            <img src="https://via.placeholder.com/300x200" alt="Produto 2">
+            <p>Produto 2</p>
+        </div>
+    </div>
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Formulário de Contato</h2>
+            <form class="formulario-contato">
+                <input type="text" name="nome" placeholder="Seu Nome" required>
+                <input type="email" name="email" placeholder="Seu Email" required>
+                <textarea name="mensagem" placeholder="Sua Mensagem" rows="4" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Código JavaScript para gerenciar o slider e os modais
+        const slides = document.querySelector('.slides');
+        const indicators = document.querySelectorAll('.indicators span');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            const totalSlides = document.querySelectorAll('.slide').length;
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 3000);
+
+        const modal = document.getElementById('contactModal');
+        const closeModal = document.querySelector('.close');
+
+        document.querySelector('.auth-buttons .login').addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
